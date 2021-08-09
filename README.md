@@ -66,7 +66,7 @@ Finally, set the terminal window to use the COM port as a data source.
 
 **Caution! If regenerating the MCC API, please be careful when merging changes to avoid overwriting the modified ISR handlers. This will break functionality.**
 
-When code can't be merged, MCC asks the user to approve changes by pressing the arrow or X next to the relevant change. Closing the window will decline any unapproved changes.
+When code can't be merged, MCC asks the user to approve changes by pressing the arrow or X next to the relevant change. Closing the merge window will decline any unapproved changes.
 
 ![Merge Warning](./images/mergeWarning.PNG)
 
