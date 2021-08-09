@@ -4,10 +4,10 @@
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-analog-demo-mplab-mcc",
-        "version": " ",
-        "displayName": "",
+        "version": "1.0.0",
+        "displayName": "Signal Scaling with the OPAMP on the AVR® DB Family of MCUs",
         "projectName": "avr128db48-analog-demo-mplab-mcc",
-        "shortDescription": "This example demonstrates using one of the OPAMPs as a Programmable Gain Amplifier PGA for the on board ADC",
+        "shortDescription": "This example demonstrates using one of the OPAMPs as a Programmable Gain Amplifier (PGA) for the on board ADC",
         "ide": {
             "name": "MPLAB X",
             "semverRange": ">=5.50.0"
@@ -19,12 +19,12 @@
             }
         ],
         "dfp": {
-            "name": "",
-            "semverRange": ""
+            "name": "AVR-Dx_DFP",
+            "semverRange": "^1.1.119"
         },
         "configurator": {
-            "name": "",
-            "semverRange": ""
+            "name": "MCC",
+            "semverRange": "4.2.3"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -36,10 +36,33 @@
                 "versionRange": "*"
             }
         },
-        "author": "Robert Perkel",
-        "subcategories": [],
-        "peripherals": [],
-        "keywords": [],
+        "author": "Microchip",
+        "subcategories": [
+          [
+             "Peripherals", "RTC"
+          ],
+          [
+             "Peripherals", "ADC"
+          ],
+          [
+             "Peripherals", "OPAMP"
+          ],
+          [
+             "Peripherals", "CCL"
+          ],
+          [
+             "Peripherals", "USART"
+          ],
+          [
+             "Peripherals", "EVSYS"
+          ]
+        ],
+        "peripherals": [
+          "RTC", "ADC", "CCL", "EVSYS", "OPAMP", "USART"
+        ],
+        "keywords": [
+          "12-bit ADC", "ADC", "PGA", "Analog", "OPAMP", "CCL", "RTC", "Sleep", "EVSYS"
+        ],
         "additionalData": {
             "longDescription": {
                 "metaDataVersion": "1.0.0",
