@@ -106,6 +106,11 @@ int main(void)
     //Write an empty byte to set the USART TXCIF flags
     USART3_Write(0x00);
     
+    float result = 0.0;
+    
+    //Assumes 3.3V operation, 12-bit single-ended results
+    const float bitsPerVolt = 3.3 / 4096;
+    
     while(1)
     { 
         if (getGainFlag())
@@ -127,18 +132,25 @@ int main(void)
             //Result Changed
             clearResultFlag();
             
+            //Convert result to floating point
+            result = ADC0_GetConversionResult() * bitsPerVolt;        
+            
             //Blink LED
             LED0_Toggle();
             
             //Print Results
             printf("Current Gain: %s\n\r", getCurrentGain());
-            printf("Measurement (signed): 0x%X\n\r\n\r", ADC0_GetConversionResult());
+            printf("Measured: %1.3fV\n\r\n\r", result);
         }
         
         //Wait for UART to finish
         while (USART3_IsTxBusy());
         USART3.STATUS = USART_TXCIF_bm;
 
+        //If the button was pressed while printing
+        if (getGainFlag())
+            continue;
+        
         //Go to Sleep
         asm ("SLEEP");
         asm ("NOP");
