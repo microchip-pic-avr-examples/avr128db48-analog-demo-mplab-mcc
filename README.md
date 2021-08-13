@@ -88,7 +88,7 @@ LED0 on the Curiosity Nano toggles when the MCU is ready to print a result. The 
 
 ![Sample Output](./images/sampleOutput.PNG)
 
-To switch the OPAMP gain configuration, press button SW0 on the Curiosity Nano. The output signal from SW0 is debounced by a CCL. The rising edge interrupt from the CCL's output wakes the microcontroller to switch gains. Then, the MCU wakes up and performs the following steps:
+To switch the OPAMP gain configuration, press button SW0 on the Curiosity Nano. The output signal from SW0 is debounced by a CCL. The rising edge interrupt from the CCL's output wakes the microcontroller to switch gains. Then, the MCU wakes up and performs the following operations:
 
 - Stop the RTC
 - Modify the gain (and configuration) of the OPAMP
