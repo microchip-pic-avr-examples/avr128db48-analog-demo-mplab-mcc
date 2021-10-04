@@ -1,11 +1,34 @@
 /**
-  @Company
-    Microchip Technology Inc.
+ * Generated Ports header File
+ * 
+ * @file port.h
+ * 
+ * @ingroup pinsdriver
+ * 
+ * @brief This Source file provides APIs. 
+ *
+ * @version Driver Version  1.0.0
+*/
 
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+/*
+© [2021] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
 */
 
 
@@ -18,23 +41,31 @@ extern "C" {
 
 #include "utils/compiler.h"
 
+/* @ingroup pinsdriver
+ * @enum port_pull_mode
+ * Defines the pullup modes.
+ */
 enum port_pull_mode {
 	PORT_PULL_OFF,
 	PORT_PULL_UP,
 };
 
+/* @ingroup pinsdriver
+ * @enum port_dir
+ * Defines the port directions.
+ */
 enum port_dir {
 	PORT_DIR_IN,
 	PORT_DIR_OUT,
 	PORT_DIR_OFF,
 };
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTA_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -48,12 +79,11 @@ static inline void PORTA_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTA_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -67,19 +97,12 @@ static inline void PORTA_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTA_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -89,17 +112,14 @@ static inline void PORTA_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTA_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -127,16 +147,13 @@ static inline void PORTA_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTA_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -156,14 +173,14 @@ static inline void PORTA_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTA_set_port_level(const uint8_t mask, const bool level)
 {
@@ -175,13 +192,12 @@ static inline void PORTA_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTA_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -193,12 +209,12 @@ static inline void PORTA_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTA_toggle_port_level(const uint8_t mask)
 {
@@ -206,11 +222,11 @@ static inline void PORTA_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTA_toggle_pin_level(const uint8_t pin)
 {
@@ -218,10 +234,11 @@ static inline void PORTA_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTA_get_port_level()
 {
@@ -229,9 +246,11 @@ static inline uint8_t PORTA_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTA_get_pin_level(const uint8_t pin)
 {
@@ -239,23 +258,23 @@ static inline bool PORTA_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTA_write_port(const uint8_t value)
 {
 	VPORTA.OUT = value;
 }
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTB_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -269,12 +288,11 @@ static inline void PORTB_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTB_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -288,19 +306,12 @@ static inline void PORTB_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTB_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -310,17 +321,14 @@ static inline void PORTB_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -348,16 +356,13 @@ static inline void PORTB_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -377,14 +382,14 @@ static inline void PORTB_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTB_set_port_level(const uint8_t mask, const bool level)
 {
@@ -396,13 +401,12 @@ static inline void PORTB_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -414,12 +418,12 @@ static inline void PORTB_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTB_toggle_port_level(const uint8_t mask)
 {
@@ -427,11 +431,11 @@ static inline void PORTB_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTB_toggle_pin_level(const uint8_t pin)
 {
@@ -439,10 +443,11 @@ static inline void PORTB_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTB_get_port_level()
 {
@@ -450,9 +455,11 @@ static inline uint8_t PORTB_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTB_get_pin_level(const uint8_t pin)
 {
@@ -460,23 +467,23 @@ static inline bool PORTB_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTB_write_port(const uint8_t value)
 {
 	VPORTB.OUT = value;
 }
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTC_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -490,12 +497,11 @@ static inline void PORTC_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTC_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -509,19 +515,12 @@ static inline void PORTC_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTC_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -531,17 +530,14 @@ static inline void PORTC_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -569,16 +565,13 @@ static inline void PORTC_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -598,14 +591,14 @@ static inline void PORTC_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTC_set_port_level(const uint8_t mask, const bool level)
 {
@@ -617,13 +610,12 @@ static inline void PORTC_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -635,12 +627,12 @@ static inline void PORTC_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTC_toggle_port_level(const uint8_t mask)
 {
@@ -648,11 +640,11 @@ static inline void PORTC_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTC_toggle_pin_level(const uint8_t pin)
 {
@@ -660,10 +652,11 @@ static inline void PORTC_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTC_get_port_level()
 {
@@ -671,9 +664,11 @@ static inline uint8_t PORTC_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTC_get_pin_level(const uint8_t pin)
 {
@@ -681,23 +676,23 @@ static inline bool PORTC_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTC_write_port(const uint8_t value)
 {
 	VPORTC.OUT = value;
 }
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -711,12 +706,11 @@ static inline void PORTD_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTD_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -730,19 +724,12 @@ static inline void PORTD_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTD_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -752,17 +739,14 @@ static inline void PORTD_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -790,16 +774,13 @@ static inline void PORTD_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -819,14 +800,14 @@ static inline void PORTD_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTD_set_port_level(const uint8_t mask, const bool level)
 {
@@ -838,13 +819,12 @@ static inline void PORTD_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -856,12 +836,12 @@ static inline void PORTD_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTD_toggle_port_level(const uint8_t mask)
 {
@@ -869,11 +849,11 @@ static inline void PORTD_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTD_toggle_pin_level(const uint8_t pin)
 {
@@ -881,10 +861,11 @@ static inline void PORTD_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTD_get_port_level()
 {
@@ -892,9 +873,11 @@ static inline uint8_t PORTD_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTD_get_pin_level(const uint8_t pin)
 {
@@ -902,23 +885,23 @@ static inline bool PORTD_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTD_write_port(const uint8_t value)
 {
 	VPORTD.OUT = value;
 }
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTE_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -932,12 +915,11 @@ static inline void PORTE_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTE_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -951,19 +933,12 @@ static inline void PORTE_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTE_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -973,17 +948,14 @@ static inline void PORTE_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTE_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -1011,16 +983,13 @@ static inline void PORTE_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTE_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -1040,14 +1009,14 @@ static inline void PORTE_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTE_set_port_level(const uint8_t mask, const bool level)
 {
@@ -1059,13 +1028,12 @@ static inline void PORTE_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTE_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -1077,12 +1045,12 @@ static inline void PORTE_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTE_toggle_port_level(const uint8_t mask)
 {
@@ -1090,11 +1058,11 @@ static inline void PORTE_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTE_toggle_pin_level(const uint8_t pin)
 {
@@ -1102,10 +1070,11 @@ static inline void PORTE_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTE_get_port_level()
 {
@@ -1113,9 +1082,11 @@ static inline uint8_t PORTE_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTE_get_pin_level(const uint8_t pin)
 {
@@ -1123,23 +1094,23 @@ static inline bool PORTE_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTE_write_port(const uint8_t value)
 {
 	VPORTE.OUT = value;
 }
+
 /**
- * \brief Set port pin pull mode
- *
- * Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used
- *
- * \param[in] pin       The pin number within port
- * \param[in] pull_mode Pin pull mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin pull mode, Configure pin to pull up, down or disable pull mode, supported pull modes are defined by device used.
+ * @param pin The pin number within port
+ * @param pull_mode Pin pull mode
+ * @return none
  */
 static inline void PORTF_set_pin_pull_mode(const uint8_t pin, const enum port_pull_mode pull_mode)
 {
@@ -1153,12 +1124,11 @@ static inline void PORTF_set_pin_pull_mode(const uint8_t pin, const enum port_pu
 }
 
 /**
- * \brief Set port pin inverted mode
- *
- * Configure pin invert I/O or not
- *
- * \param[in] pin       The pin number within port
- * \param[in] inverted  Pin inverted mode
+ * @ingroup  pinsdriver
+ * @brief Set port pin inverted mode, Configure pin invert I/O or not.
+ * @param pin The pin number within port
+ * @param inverted Pin inverted mode
+ * @return none
  */
 static inline void PORTF_pin_set_inverted(const uint8_t pin, const bool inverted)
 {
@@ -1172,19 +1142,12 @@ static inline void PORTF_pin_set_inverted(const uint8_t pin, const bool inverted
 }
 
 /**
- * \brief Set port pin input/sense configuration
- *
- * Enable/disable digital input buffer and pin change interrupt,
- * select pin interrupt edge/level sensing mode
- *
- * \param[in] pin pin number within port
- * \param[in] isc PORT_ISC_INTDISABLE_gc    = Interrupt disabled but input buffer enabled
- *                PORT_ISC_BOTHEDGES_gc     = Sense Both Edges
- *                PORT_ISC_RISING_gc        = Sense Rising Edge
- *                PORT_ISC_FALLING_gc       = Sense Falling Edge
- *                PORT_ISC_INPUT_DISABLE_gc = Digital Input Buffer disabled
- *                PORT_ISC_LEVEL_gc         = Sense low Level
- *
+ * @ingroup  pinsdriver
+ * @brief Set port pin input/sense configuration, Enable/disable digital input buffer and pin change interrupt,
+ * 		  select pin interrupt edge/level sensing mode 
+ * @param The pin number within port
+ * @param isc PORT_ISC_t
+ * @return none
  */
 static inline void PORTF_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 {
@@ -1194,17 +1157,14 @@ static inline void PORTF_pin_set_isc(const uint8_t pin, const PORT_ISC_t isc)
 }
 
 /**
- * \brief Set port data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] mask      Bit mask where 1 means apply direction setting to the
+ * @param mask      Bit mask where 1 means apply direction setting to the
  *                      corresponding pin
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTF_set_port_dir(const uint8_t mask, const enum port_dir dir)
 {
@@ -1232,16 +1192,13 @@ static inline void PORTF_set_port_dir(const uint8_t mask, const enum port_dir di
 }
 
 /**
- * \brief Set port pin data direction
- *
- * Select if the pin data direction is input, output or disabled.
+ * @ingroup  pinsdriver
+ * @brief Set port pin data direction, Select if the pin data direction is input, output or disabled.
  * If disabled state is not possible, this function throws an assert.
  *
- * \param[in] pin       The pin number within port
- * \param[in] dir       PORT_DIR_IN  = Data direction in
- *                      PORT_DIR_OUT = Data direction out
- *                      PORT_DIR_OFF = Disables the pin
- *                      (low power state)
+ * @param pin       The pin number within port
+ * @param dir port_dir
+ * @return none
  */
 static inline void PORTF_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 {
@@ -1261,14 +1218,14 @@ static inline void PORTF_set_pin_dir(const uint8_t pin, const enum port_dir dir)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on the pins defined by the bit mask.
  *
- * Sets output level on the pins defined by the bit mask
- *
- * \param[in] mask  Bit mask where 1 means apply port level to the corresponding
+ * @param mask  Bit mask where 1 means apply port level to the corresponding
  *                  pin
- * \param[in] level true  = Pin levels set to "high" state
+ * @param level -boolean value that defines the logic state of the pin level
  *                  false = Pin levels set to "low" state
+ * @return none
  */
 static inline void PORTF_set_port_level(const uint8_t mask, const bool level)
 {
@@ -1280,13 +1237,12 @@ static inline void PORTF_set_port_level(const uint8_t mask, const bool level)
 }
 
 /**
- * \brief Set port level
+ * @ingroup  pinsdriver
+ * @brief Set port level, Sets output level on a pin.
  *
- * Sets output level on a pin
- *
- * \param[in] pin       The pin number within port
- * \param[in] level true  = Pin level set to "high" state
- *                  false = Pin level set to "low" state
+ * @param pin       The pin number within port
+ * @param level -boolean value that defines the logic state of the pin level
+ * @return none
  */
 static inline void PORTF_set_pin_level(const uint8_t pin, const bool level)
 {
@@ -1298,12 +1254,12 @@ static inline void PORTF_set_pin_level(const uint8_t pin, const bool level)
 }
 
 /**
- * \brief Toggle out level on pins
+ * @ingroup  pinsdriver
+ * @brief Toggle out level on pins, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] mask  Bit mask where 1 means toggle pin level to the corresponding
+ * @param mask  Bit mask where 1 means toggle pin level to the corresponding
  *                  pin
+ * @return none
  */
 static inline void PORTF_toggle_port_level(const uint8_t mask)
 {
@@ -1311,11 +1267,11 @@ static inline void PORTF_toggle_port_level(const uint8_t mask)
 }
 
 /**
- * \brief Toggle output level on pin
+ * @ingroup  pinsdriver
+ * @brief Toggle output level on pin, Toggle the pin levels on pins defined by bit mask.
  *
- * Toggle the pin levels on pins defined by bit mask
- *
- * \param[in] pin       The pin number within port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline void PORTF_toggle_pin_level(const uint8_t pin)
 {
@@ -1323,10 +1279,11 @@ static inline void PORTF_toggle_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Get input level on pins
+ * @ingroup  pinsdriver
+ * @brief Get input level on pins, Read the input level on pins connected to a port.
  *
- * Read the input level on pins connected to a port
- *
+ * @param none
+ * @return none
  */
 static inline uint8_t PORTF_get_port_level()
 {
@@ -1334,9 +1291,11 @@ static inline uint8_t PORTF_get_port_level()
 }
 
 /**
- * \brief Get level on pin
+ * @ingroup  pinsdriver
+ * @brief Get level on pin, Reads the level on pins connected to a port.
  *
- * Reads the level on pins connected to a port
+ * @param pin       The pin number within port
+ * @return none
  */
 static inline bool PORTF_get_pin_level(const uint8_t pin)
 {
@@ -1344,11 +1303,11 @@ static inline bool PORTF_get_pin_level(const uint8_t pin)
 }
 
 /**
- * \brief Write value to Port
+ * @ingroup  pinsdriver
+ * @brief Write value to Port, Write directly to the port OUT register.
  *
- * Write directly to the port OUT register
- *
- * \param[in] value Value to write to the port register
+ * @param value Value to write to the port register
+ * @return none
  */
 static inline void PORTF_write_port(const uint8_t value)
 {

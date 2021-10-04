@@ -1,3 +1,15 @@
+/**
+ * CCL Generated Header File
+ * 
+ * @file ccl.h
+ * 
+ * @defgroup  ccl CCL
+ * 
+ * @brief This is the generated header file for the CCL driver. 
+ *
+ * @version Driver Version  1.1.0
+*/
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -11,25 +23,16 @@ extern "C" {
 #endif
 
 /**
-  @Summary
-    Initializes the CCL.
-
-  @Description
-    This routine initializes the CCL.
-    This routine should only be called once during system initialization.
-
-  @Preconditions
-    None
-
-  @Param
-    None
-    
-   @Example
-    <code>
-    CCL_Initialize();
-    </code>
-*/
+ * @ingroup  ccl
+ * @brief Initializes the CCL.
+ *        This routine should only be called once during system initialization.
+ * @pre none
+ * @param none.
+ * @return none
+ */
 int8_t CCL_Initialize(void);
+void LUT4_OUT_DefaultInterruptHandler(void);
+void LUT4_OUT_SetInterruptHandler(void (* interruptHandler)(void)) ; 
 
 #ifdef __cplusplus
 }

@@ -1,38 +1,35 @@
 /**
-  Generated Pin Manager File
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    pins.c
-  
-  This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+ * Generated Driver File
+ * 
+ * @file pins.c
+ * 
+ * @ingroup  pinsdriver
+ * 
+ * @brief This is generated driver implementation for pins. 
+ *        This file provides implementations for pin APIs for all pins selected in the GUI.
+ *
+ * @version Driver Version 1.0.0
 */
 
 /*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
-    may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
-    FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
-    SOFTWARE.
+© [2021] Microchip Technology Inc. and its subsidiaries.
+
+    Subject to your compliance with these terms, you may use Microchip 
+    software and any derivatives exclusively with Microchip products. 
+    You are responsible for complying with 3rd party license terms  
+    applicable to your use of 3rd party software (including open source  
+    software) that may accompany Microchip software. SOFTWARE IS ?AS IS.? 
+    NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS 
+    SOFTWARE, INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT,  
+    MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT 
+    WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
+    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY 
+    KIND WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF 
+    MICROCHIP HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE 
+    FORESEEABLE. TO THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP?S 
+    TOTAL LIABILITY ON ALL CLAIMS RELATED TO THE SOFTWARE WILL NOT 
+    EXCEED AMOUNT OF FEES, IF ANY, YOU PAID DIRECTLY TO MICROCHIP FOR 
+    THIS SOFTWARE.
 */
 
 #include "../pins.h"
@@ -258,69 +255,59 @@ void PB3_DefaultInterruptHandler(void)
     // or set custom function using PB3_SetInterruptHandler()
 }
 ISR(PORTA_PORT_vect)
-{  
-    // Call the interrupt handler for the callback registered at runtime
-
+{ 
     /* Clear interrupt flags */
     VPORTA.INTFLAGS = 0xff;
 }
 
 ISR(PORTB_PORT_vect)
-{  
+{ 
     // Call the interrupt handler for the callback registered at runtime
     if(VPORTB.INTFLAGS & PORT_INT0_bm)
     {
-       PB0_InterruptHandler();
+       PB0_InterruptHandler(); 
     }
     if(VPORTB.INTFLAGS & PORT_INT2_bm)
     {
-       PB2_InterruptHandler();
+       PB2_InterruptHandler(); 
     }
     if(VPORTB.INTFLAGS & PORT_INT3_bm)
     {
-       PB3_InterruptHandler();
+       PB3_InterruptHandler(); 
     }
-
     /* Clear interrupt flags */
     VPORTB.INTFLAGS = 0xff;
 }
 
 ISR(PORTC_PORT_vect)
-{  
-    // Call the interrupt handler for the callback registered at runtime
-
+{ 
     /* Clear interrupt flags */
     VPORTC.INTFLAGS = 0xff;
 }
 
 ISR(PORTD_PORT_vect)
-{  
+{ 
     // Call the interrupt handler for the callback registered at runtime
     if(VPORTD.INTFLAGS & PORT_INT1_bm)
     {
-       PD1_InterruptHandler();
+       PD1_InterruptHandler(); 
     }
     if(VPORTD.INTFLAGS & PORT_INT2_bm)
     {
-       PD2_InterruptHandler();
+       PD2_InterruptHandler(); 
     }
-
     /* Clear interrupt flags */
     VPORTD.INTFLAGS = 0xff;
 }
 
 ISR(PORTE_PORT_vect)
-{  
-    // Call the interrupt handler for the callback registered at runtime
-
+{ 
     /* Clear interrupt flags */
     VPORTE.INTFLAGS = 0xff;
 }
 
 ISR(PORTF_PORT_vect)
-{  
-    // Call the interrupt handler for the callback registered at runtime
-
+{ 
     /* Clear interrupt flags */
     VPORTF.INTFLAGS = 0xff;
 }
