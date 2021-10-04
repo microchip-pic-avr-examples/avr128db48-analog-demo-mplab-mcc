@@ -4,7 +4,7 @@
     "content": {
         "metaDataVersion": "1.1.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-analog-demo-mplab-mcc",
-        "version": "1.0.0",
+        "version": "2.0.0",
         "displayName": "Signal Scaling with the OPAMP on the AVR® DB Family of MCUs",
         "projectName": "avr128db48-analog-demo-mplab-mcc",
         "shortDescription": "This example demonstrates using one of the OPAMPs as a Programmable Gain Amplifier (PGA) for the on board ADC",
@@ -24,7 +24,7 @@
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": "4.2.3"
+            "semverRange": "5.0.0"
         },
         "device": {
             "metaDataVersion": "1.0.0",
