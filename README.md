@@ -69,14 +69,6 @@ Once the COM port has been opened, the last step is to set the terminal window t
 
 ![Configure the Terminal](./images/DVsetup4.PNG)
 
-## Regenerating the API
-
-**Caution! If regenerating the MCC API, please be careful when merging changes to avoid overwriting the modified ISR handlers. This will break functionality.**
-
-When code can't be merged, MCC asks the user to approve changes by pressing the arrow or X next to the relevant change. Closing the merge window will decline any unapproved changes.
-
-![Merge Warning](./images/mergeWarning.PNG)
-
 ## Operation
 
 This demo implements an analog signal chain with 1 of the OPAMPs acting as a Programmable Gain Amplifier (PGA) for the ADC. The PGA  can switch gains without using external components due to the internal resistor ladder on the device. There are 8 steps on the ladder plus a unity gain mode for a total of 9 possible gains (1x, 1.07x, 1.14x, 1.33x, 2x, 2.67x, 4x, 8x, 16x) with a single OPAMP.
