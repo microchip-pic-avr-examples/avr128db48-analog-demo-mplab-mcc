@@ -1,17 +1,17 @@
 /**
- * Interrupt Manager Generated Driver File
+ * Interrupt Manager Generated Driver File.
  *
  * @file interrupt.c
  * 
  * @ingroup interrupt 
  * 
- * @brief This file contains the driver code for Interrupt Manager.
+ * @brief This file contains the API implementation for the Interrupt Manager.
  * 
  * @version Interrupt Manager Driver Version 1.0.0
 */
 
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -38,8 +38,8 @@ int8_t CPUINT_Initialize()
 {
     /* IVSEL and CVT are Configuration Change Protected */
 
-    //CVT disabled; IVSEL disabled; LVL0RR disabled; 
-    ccp_write_io((void*)&(CPUINT.CTRLA),0x0);
+    //CVT disabled; IVSEL enabled; LVL0RR disabled; 
+    ccp_write_io((void*)&(CPUINT.CTRLA),0x40);
     
     //LVL0PRI 0; 
     CPUINT.LVL0PRI = 0x0;

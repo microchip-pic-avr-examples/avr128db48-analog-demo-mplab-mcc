@@ -8,7 +8,7 @@
     Driver Version    :   1.0.0
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -34,11 +34,11 @@ void OPAMP_Initialize(void)
 {
     OPAMP_DisableSystem();
     
-    //TIMEBASE 1; 
+    //TIMEBASE 3; 
     OPAMP.TIMEBASE = OPAMP_TIMEBASE_VALUE << OPAMP_TIMEBASE_gp;
     
-    //DBGRUN enabled; 
-    OPAMP.DBGCTRL = 0x1;
+    //DBGRUN disabled; 
+    OPAMP.DBGCTRL = 0x0;
     
     //IRSEL FULL; 
     OPAMP.PWRCTRL = 0x0;

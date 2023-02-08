@@ -1,14 +1,16 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+ * System Driver Source File
+ * 
+ * @file system.c
+ * 
+ * @ingroup systemdriver
+ * 
+ * @brief This file contains the API implementation for the System driver.
+ *
+ * @version Driver Version 1.0.1
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -28,13 +30,9 @@
     THIS SOFTWARE.
 */
 
-
 #include "../system.h"
 
-/**
- * Initializes MCU, drivers and middleware in the project
-**/
-
+int8_t SLPCTRL_Initialize();
 
 void SYSTEM_Initialize(void)
 {
@@ -50,4 +48,22 @@ void SYSTEM_Initialize(void)
     VREF_Initialize();
     CPUINT_Initialize();
 }
+
+/**
+ * @brief Initializes the SLPCTRL module.
+ * @param None.
+ * @return None.
+ */
+int8_t SLPCTRL_Initialize()
+{
+    //SEN enabled; SMODE STDBY; 
+    ccp_write_io((void*)&(SLPCTRL.CTRLA),0x3);
+    
+    //PMODE AUTO; 
+    ccp_write_io((void*)&(SLPCTRL.VREGCTRL),0x0);
+    
+
+    return 0;
+}
+
 

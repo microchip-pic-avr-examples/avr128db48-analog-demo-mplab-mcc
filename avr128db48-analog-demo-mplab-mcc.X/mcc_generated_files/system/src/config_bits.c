@@ -1,14 +1,16 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+ * CONFIGURATION BITS Generated Driver Source File
+ * 
+ * @file config_bits.c
+ * 
+ * @ingroup config_bitsdriver
+ * 
+ * @brief This file contains the generated Device Configuration Bits file.
+ *
+ * @version Driver Version 1.0.2
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -28,13 +30,11 @@
     THIS SOFTWARE.
 */
 
-
 #include <avr/io.h>
 
 /**
- * Configures Fuse bits
+ * Configures the Fuse bits.
  */
-
 FUSES = 
 {
   .BODCFG = ACTIVE_DISABLE_gc | LVL_BODLEVEL0_gc | SAMPFREQ_128Hz_gc | SLEEP_DISABLE_gc,
@@ -42,6 +42,6 @@ FUSES =
   .CODESIZE = 0x0,
   .OSCCFG = CLKSEL_OSCHF_gc,
   .SYSCFG0 = CRCSEL_CRC16_gc | CRCSRC_NOCRC_gc | RSTPINCFG_GPIO_gc,
-  .SYSCFG1 = MVSYSCFG_DUAL_gc | SUT_8MS_gc,
+  .SYSCFG1 = MVSYSCFG_DUAL_gc | SUT_0MS_gc,
   .WDTCFG = PERIOD_OFF_gc | WINDOW_OFF_gc,
 };

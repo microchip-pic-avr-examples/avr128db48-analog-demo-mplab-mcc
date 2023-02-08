@@ -1,14 +1,16 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   2.0.0
+  * RTC Generated Driver File
+  *
+  * @file rtc.c
+  *
+  * @ingroup rtc
+  *
+  * @brief This file contains the driver code for RTC module.
+  *
+  * version RTC Driver Version 2.0.2
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -31,19 +33,10 @@
 
 #include "../rtc.h"
 
-/**
- * \brief Initialize rtc interface
- *
- * \return Initialization status.
- */
-
 void (*RTC_OVF_isr_cb)(void) = NULL;
 void (*RTC_CMP_isr_cb)(void) = NULL;
 void (*RTC_PIT_isr_cb)(void) = NULL;
 
-/**
- * \brief Initialize RTC interface
- */
 int8_t RTC_Initialize(void)
 {
     while (RTC.STATUS > 0) { /* Wait for all register to be synchronized */
@@ -63,17 +56,11 @@ int8_t RTC_Initialize(void)
     // CMP disabled; OVF disabled; 
     RTC.INTCTRL = 0x0;
 
-    // CORREN disabled; PRESCALER RTC Clock / 1; RTCEN enabled; RUNSTDBY disabled; 
-    RTC.CTRLA = 0x1;
-
 
         while (RTC.PITSTATUS > 0) { /* Wait for all register to be synchronized */
     }
     // PI disabled; 
 	RTC.PITINTCTRL = 0x0;
-
-    // PERIOD Off; PITEN enabled; 
-    RTC.PITCTRLA = 0x1;
 
     return 0;
 }
@@ -143,7 +130,7 @@ inline uint16_t RTC_ReadCounter(void)
     return RTC.CNT;
 }
 
-inline void RTC_WritePeroid(uint16_t timerVal)
+inline void RTC_WritePeriod(uint16_t timerVal)
 {
     while (RTC.STATUS & RTC_PERBUSY_bm);
     RTC.PER = timerVal;

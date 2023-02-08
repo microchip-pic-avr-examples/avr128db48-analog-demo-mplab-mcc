@@ -8,7 +8,7 @@
     Driver Version    :   1.0.0
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -34,7 +34,7 @@
 #include "../system/utils/compiler.h"
 #include <stdbool.h>
 
-#define OPAMP_TIMEBASE_VALUE (1)
+#define OPAMP_TIMEBASE_VALUE (3)
 
 /**
   @Summary

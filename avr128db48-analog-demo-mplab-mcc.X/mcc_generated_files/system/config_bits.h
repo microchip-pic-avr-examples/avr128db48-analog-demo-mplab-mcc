@@ -1,14 +1,15 @@
 /**
- * System Driver Header File
+ * CONFIGURATION BITS Generated Driver Header File
  * 
- * @file system.h
+ * @file config_bits.h
  * 
- * @defgroup systemdriver System Driver
+ * @defgroup config_bitsdriver Configuration Bits Driver 
  * 
- * @brief This file contains the API prototypes for the System driver.
+ * @brief This file contains the generated header file for the Configuration bits driver.
  *
- * @version Driver Version 1.0.1
+ * @version Driver Version 1.0.0
 */
+    
 /*
 © [2023] Microchip Technology Inc. and its subsidiaries.
 
@@ -30,38 +31,12 @@
     THIS SOFTWARE.
 */
 
+#ifndef CONFIG_BITS_H
+#define	CONFIG_BITS_H
 
-#ifndef MCC_H
-#define	MCC_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-#include "../system/utils/compiler.h"
-#include "config_bits.h"
-#include "../system/pins.h"
-#include "../adc/adc0.h"
-#include "../ccl/ccl.h"
 #include "../system/clock.h"
-#include "../evsys/evsys.h"
-#include "../opamp/opamp.h"
-#include "../timer/rtc.h"
-#include "../uart/usart3.h"
-#include "../vref/vref.h"
-#include "../system/interrupt.h"
-/**
- * @ingroup systemdriver
- * @brief Initializes the system module. This routine must be called only once during the system initialization and before any other routine is called.
- * @param None.
- * @return None.
-*/
-void SYSTEM_Initialize(void);
 
-#ifdef __cplusplus
-}
-#endif
-#endif	/* MCC_H */
+#endif //CONFIG_BITS_H
 /**
  End of File
 */

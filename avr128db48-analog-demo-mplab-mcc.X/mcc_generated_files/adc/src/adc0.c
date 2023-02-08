@@ -1,14 +1,17 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+ * ADC0 Generated Driver File
+ *
+ * @file adc0.c
+ * 
+ * @ingroup adc0 
+ * 
+ * @brief API Implementations for ADC0 module driver.
+ * 
+ * @version ADC0 Driver Version 1.0.0
 */
+
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -34,9 +37,6 @@
 adc_irq_cb_t ADC0_window_cb = NULL;
 adc_irq_cb_t ADC0_resrdy_cb = NULL;
 
-/**
- * \brief Initialize ADC interface
- */
 int8_t ADC0_Initialize(void)
 {
      
@@ -55,8 +55,8 @@ int8_t ADC0_Initialize(void)
     // DBGRUN enabled; 
     ADC0.DBGCTRL = 0x1;
 
-    // STARTEI disabled; 
-    ADC0.EVCTRL = 0x0;
+    // STARTEI enabled; 
+    ADC0.EVCTRL = 0x1;
 
     // RESRDY enabled; WCMP disabled; 
     ADC0.INTCTRL = 0x1;
@@ -71,7 +71,7 @@ int8_t ADC0_Initialize(void)
     ADC0.SAMPCTRL = 0x64;
 
     // Window comparator high threshold 
-    ADC0.WINHT = 0x0;
+    ADC0.WINHT = 0xFFF;
 
     // Window comparator low threshold 
     ADC0.WINLT = 0x0;
@@ -125,14 +125,12 @@ void ADC0_SetWindowChannel(adc_0_channel_t channel)
 
 void ADC0_StartConversion(adc_0_channel_t channel)
 {
-    ADC0.CTRLA &= ~ADC_CONVMODE_bm;
     ADC0.MUXPOS  = channel;
     ADC0.COMMAND = ADC_STCONV_bm;
 }
 
 void ADC0_StartDiffConversion(adc_0_channel_t channel, adc_0_muxneg_channel_t channel1)
 {
-    ADC0.CTRLA |= ADC_CONVMODE_bm;
     ADC0.MUXPOS  = channel;
     ADC0.MUXNEG  = channel1;
     ADC0.COMMAND = ADC_STCONV_bm;

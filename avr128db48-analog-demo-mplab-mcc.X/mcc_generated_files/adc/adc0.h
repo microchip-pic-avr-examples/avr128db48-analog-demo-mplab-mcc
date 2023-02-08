@@ -1,14 +1,17 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+ * ADC0 Generated Driver API Header File
+ * 
+ * @file adc0.h
+ * 
+ * @defgroup adc0 ADC0
+ * 
+ * @brief API prototypes and other datatypes for the ADC0 module driver.
+ *
+ * @version ADC0 Driver Version 1.0.0
 */
+
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -38,184 +41,216 @@
 extern "C" {
 #endif
 
+/**
+ * @ingroup adc0
+ * @enum ADC0_window_mode_t
+ * @brief Window Comparator Modes
+ */
 typedef enum {
-    ADC0_window_disabled,
-    ADC0_window_below,
-    ADC0_window_above,
-    ADC0_window_inside,
-    ADC0_window_outside
+    ADC0_window_disabled,  /**<Window Comparison is Disabled*/
+    ADC0_window_below,     /**<Result is below a threshold*/
+    ADC0_window_above,     /**<Result is above a threshold*/
+    ADC0_window_inside,    /**<Result is inside a window*/
+    ADC0_window_outside    /**<Result is outside a window*/
 } ADC0_window_mode_t;
 
-/** Function pointer to callback function called by IRQ.
-    NULL=default value: No callback function is to be used.
-*/
+/**
+ * @ingroup adc0
+ * @typedef void adc_irq_cb_t
+ * @brief Function pointer to callback function called by IRQ. NULL=default value: No callback function is to be used.
+ */
 typedef void (*adc_irq_cb_t)(void);
 
-/** Datatype for the result of the ADC conversion */
+/**
+ * @ingroup adc0
+ * @typedef uint32_t adc_result_t
+ * @brief Datatype for the result of non-differential ADC conversion.
+ */
 typedef uint16_t adc_result_t;
+
+/**
+ * @ingroup adc0
+ * @typedef int32_t diff_adc_result_t
+ * @brief Datatype for the result of differential ADC conversion.
+ */
 typedef int16_t diff_adc_result_t;
 
-//* Analog channel selection */
+/**
+ * @ingroup adc0
+ * @typedef ADC_MUXPOS_t adc_0_channel_t
+ * @brief Datatype for the ADC Positive Input Selection
+ */
 typedef ADC_MUXPOS_t adc_0_channel_t;
+
+/**
+ * @ingroup adc0
+ * @typedef ADC_MUXNEG_t adc_0_muxneg_channel_t
+ * @brief Datatype for the ADC Negative Input Selection
+ */
 typedef ADC_MUXNEG_t adc_0_muxneg_channel_t;
 
 /**
- * \brief Initialize ADC interface
- * If module is configured to disabled state, the clock to the ADC is disabled
- * if this is supported by the device's clock system.
- *
- * \return Initialization status.
- * \retval 0 the ADC init was successful
- * \retval 1 the ADC init was not successful
+ * @ingroup adc0
+ * @brief Initializes ADC interface. If module is configured to disabled state, the clock to the ADC is disabled if this is supported by the device's clock system.
+ * @param none
+ * @retval 0 - the ADC init was successful
+ * @retval 1 - the ADC init was not successful
  */
 int8_t ADC0_Initialize(void);
 
 /**
- * \brief Enable ADC0
- * 1. If supported by the clock system, enables the clock to the ADC
- * 2. Enables the ADC module by setting the enable-bit in the ADC control register
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Enables ADC0. If supported by the clock system, enables the clock to the ADC. Enables the ADC module by setting the enable-bit in the ADC control register.
+ * @param none
+ * @return none
  */
 void ADC0_Enable(void);
 
 /**
- * \brief Disable ADC0
- * 1. Disables the ADC module by clearing the enable-bit in the ADC control register
- * 2. If supported by the clock system, disables the clock to the ADC
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Disables ADC0. Disables the ADC module by clearing the enable-bit in the ADC control register. If supported by the clock system, disables the clock to the ADC.
+ * @param none
+ * @return none
  */
 void ADC0_Disable(void);
 
 /**
- * \brief Enable conversion auto-trigger
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Enables conversion auto-trigger
+ * @param none
+ * @return none
  */
 void ADC0_EnableAutoTrigger(void);
 
 /**
- * \brief Disable conversion auto-trigger
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Disables conversion auto-trigger
+ * @param none
+ * @return none
  */
 void ADC0_DisableAutoTrigger(void);
 
 /**
- * \brief Set conversion window comparator high threshold
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Sets conversion window comparator high threshold
+ * @param adc_result_t high - desired window comparator high threshold register value
+ * @return none
  */
 void ADC0_SetWindowHigh(adc_result_t high);
 
 /**
- * \brief Set conversion window comparator low threshold
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Sets conversion window comparator low threshold
+ * @param adc_result_t low - desired window comparator low threshold register value
+ * @return none
  */
 void ADC0_SetWindowLow(adc_result_t low);
 
 /**
- * \brief Set conversion window mode
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Sets conversion window mode
+ * @param ADC0_window_mode_t mode - window mode
+ * @return none
  */
 void ADC0_SetWindowMode(ADC0_window_mode_t mode);
 
 /**
- * \brief Set ADC channel to be used for windowed conversion mode
- *
- * \param[in] channel The ADC channel to start conversion on
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Sets ADC channel to be used for windowed conversion mode
+ * @param adc_0_channel_t channel - The ADC channel to start conversion on
+ * @return none
  */
 void ADC0_SetWindowChannel(adc_0_channel_t channel);
 
 /**
- * \brief Start a conversion on ADC0
- *
- * \param[in] channel The ADC channel to start conversion on
- *
- * \return Nothing
+ * @ingroup adc0
+ * @brief Starts a conversion on ADC0
+ * @param adc_0_channel_t channel - The ADC channel to start conversion on
+ * @return none
  */
 void ADC0_StartConversion(adc_0_channel_t channel);
 
-/**
- * \brief Start a differential conversion on ADC0
- *
- * \param[in] channel,channel1 The ADC channels to start conversion on
- *
- * \return Nothing
+ /**
+ * @ingroup adc0
+ * @brief Starts a differential conversion on ADC0
+ * @param adc_0_channel_t channel - The ADC positive input channel to start conversion on
+ * @param adc_0_muxneg_channel_t channel1 - The ADC negative input channel to start conversion on
+ * @return none
  */
 void ADC0_StartDiffConversion(adc_0_channel_t channel, adc_0_muxneg_channel_t channel1);
 
-/**
- * \brief Stop a conversion on ADC0
- *
- * \return Nothing
+ /**
+ * @ingroup adc0
+ * @brief Stops a conversion on ADC0
+ * @param none
+ * @return none
  */
 void ADC0_StopConversion(void);
 
 /**
- * \brief Check if the ADC conversion is done
- *
- * \return The status of ADC converison done check
- * \retval true The ADC conversion is done
- * \retval false The ADC converison is not done
+ * @ingroup adc0
+ * @brief Checks if the ADC conversion is done
+ * @param none
+ * @retval 1 (true) - The ADC conversion is done
+ * @retval 0 (false) - The ADC converison is not done
  */
 bool ADC0_IsConversionDone(void);
 
 /**
- * \brief Read a conversion result from ADC0
- *
- * \return Conversion result read from the ADC0 ADC module
+ * @ingroup adc0
+ * @brief Reads a conversion result from ADC0
+ * @param none
+ * @return adc_result_t - Conversion result read from the ADC0 module
  */
 adc_result_t ADC0_GetConversionResult(void);
 
 /**
- * \brief Read the conversion window result from ADC0
- *
- * \return Returns true when a comparison results in a trigger condition, false otherwise.
+ * @ingroup adc0
+ * @brief Reads the conversion window result from ADC0
+ * @param none
+ * @retval 1 (true) - a comparison results in a trigger condition
+ * @retval 0 (false) - a comparison does not result in a trigger condition.
  */
 bool ADC0_GetWindowResult(void);
 
 /**
- * \brief Start a conversion, wait until ready, and return the conversion result
- *
- * \return Conversion result read from the ADC0 ADC module
+ * @ingroup adc0
+ * @brief Starts a conversion, wait until ready, and return the conversion result
+ * @param adc_0_channel_t channel - The ADC channel to get the conversion result
+ * @return adc_result_t - Conversion result read from the ADC0 ADC module
  */
 adc_result_t ADC0_GetConversion(adc_0_channel_t channel);
 
-/**
- * \brief Start a differential conversion, wait until ready, and return the conversion result
- *
- * \return Conversion result read from the ADC0 ADC module
+ /**
+ * @ingroup adc0
+ * @brief Starts a differential conversion, wait until ready, and return the conversion result
+ * @param adc_0_channel_t channel - The ADC positive input channel to get the conversion result
+ * @param adc_0_muxneg_channel_t channel1 - The ADC negative input channel to get the conversion result
+ * @return diff_adc_result_t - Conversion result read from the ADC0 ADC module
  */
 diff_adc_result_t ADC0_GetDiffConversion(adc_0_channel_t channel, adc_0_muxneg_channel_t channel1);
 
 /**
- * \brief Return the number of bits in the ADC conversion result
- *
- * \return The number of bits in the ADC conversion result
+ * @ingroup adc0
+ * @brief Returns the number of bits in the ADC conversion result
+ * @param none
+ * @return uint8_t - The number of bits in the ADC conversion result
  */
 uint8_t ADC0_GetResolution(void);
 
 /**
- * \brief Register a callback function to be called if conversion satisfies window criteria.
- *
- * \param[in] f Pointer to function to be called
- *
- * \return Nothing.
+ * @ingroup adc0
+ * @brief Registers a callback function to be called if conversion satisfies window criteria.
+ * @param adc_irq_cb_t f - Pointer to function to be called
+ * @return none
  */
 void ADC0_RegisterWindowCallback(adc_irq_cb_t f);
 
 /**
- * \brief Register a callback function to be called when measurement is complete and a new result is ready.
- *
- * \param[in] f Pointer to function to be called
- *
- * \return Nothing.
+ * @ingroup adc0
+ * @brief Registers a callback function to be called when measurement is complete and a new result is ready.
+ * @param adc_irq_cb_t f - Pointer to function to be called
+ * @return none
  */
 void ADC0_RegisterResrdyCallback(adc_irq_cb_t f);
 

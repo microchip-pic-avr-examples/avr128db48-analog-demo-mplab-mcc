@@ -1,16 +1,16 @@
 /**
- * DELAY Generated Driver File
+ * UART Generated Driver Interface Header File
  * 
- * @file delay.c
+ * @file uart_types.h
  * 
- * @ingroup delay
+ * @defgroup uart_types UART_TYPES
  * 
- * @brief This file contains the functions to generate delays in the millisecond and microsecond ranges as well as using timer ticks to indicate delay length.
+ * @brief This file contains APIs for UART module.
  *
- * @version DELAY Driver Version 1.1.0
+ * @version UART Driver Version 2.0.0
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -30,25 +30,52 @@
     THIS SOFTWARE.
 */
 
-#include "../../system/clock.h"
-#include <util/delay.h>
+#ifndef UART_TYPES_H
+#define	UART_TYPES_H
+
+/**
+  Section: Included Files
+*/
+#include <stdbool.h>
 #include <stdint.h>
 
-void DELAY_milliseconds(uint16_t milliseconds) {
-    while(milliseconds--){ 
-        _delay_ms(1); 
-    }
-}
+#ifdef	__cplusplus
+extern "C" {
+#endif
 
-void DELAY_microseconds(uint16_t microseconds) {
-    while( microseconds >= 32)
-    {
-        _delay_us(32);
-        microseconds -= 32;
-    }
-    
-    while(microseconds--)
-    {
-        _delay_us(1);
-    }
+   
+/**
+  Section: Data Type Definitions
+*/ 
+      
+/**
+@ingroup uartdriver
+@enum UART_STANDARD_BAUDS
+@brief This Enum can be used to set UART standard
+baud-rates using \ref UARTx_BRGSet function e.g. \ref UART1_BRGSet.
+*/
+enum UART_STANDARD_BAUDS{
+UART_110 = 0,
+UART_300 = 1,
+UART_600 = 2,
+UART_1200 = 3,
+UART_2400 = 4,
+UART_4800 = 5,
+UART_9600 = 6,
+UART_14400 = 7,
+UART_19200 = 8,
+UART_38400 = 9,
+UART_57600 = 10,
+UART_115200 = 11,
+UART_230400 = 12,
+UART_460800 = 13,
+UART_921600 = 14,
+};
+
+
+#ifdef	__cplusplus
 }
+#endif
+
+#endif	/* UART_TYPES_H */
+

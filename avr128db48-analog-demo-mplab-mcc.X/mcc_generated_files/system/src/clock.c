@@ -1,14 +1,16 @@
 /**
-  @Company
-    Microchip Technology Inc.
-
-  @Description
-    This Source file provides APIs.
-    Generation Information :
-    Driver Version    :   1.0.0
+  * CLKCTRL Generated Driver File
+  *
+  * @file clkctrl.c
+  *
+  * @ingroup clkctrl
+  *
+  * @brief This file contains the driver code for CLKCTRL module.
+  *
+  * version CLKCTRL Driver Version 1.1.3
 */
 /*
-© [2021] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -29,7 +31,6 @@
 */
 
 
-#include <xc.h>
 #include "../clock.h"
 
 void CLOCK_Initialize(void)
@@ -48,8 +49,8 @@ void CLOCK_Initialize(void)
     //RUNSTDBY disabled; 
     ccp_write_io((void*)&(CLKCTRL.OSC32KCTRLA),0x0);
 
-    //AUTOTUNE disabled; FREQSEL 1 MHz system clock; RUNSTDBY disabled; 
-    ccp_write_io((void*)&(CLKCTRL.OSCHFCTRLA),0x0);
+    //AUTOTUNE disabled; FRQSEL 4 MHz system clock (default); RUNSTDBY disabled; 
+    ccp_write_io((void*)&(CLKCTRL.OSCHFCTRLA),0xC);
 
     //TUNE 0x0; 
     ccp_write_io((void*)&(CLKCTRL.OSCHFTUNE),0x0);
@@ -72,6 +73,12 @@ void CLOCK_Initialize(void)
     //CSUTHF 256; ENABLE disabled; FRQRANGE 8M; RUNSTBY disabled; SELHF XTAL; 
     ccp_write_io((void*)&(CLKCTRL.XOSCHFCTRLA),0x0);
 
+
+    // System clock stability check by polling the status register.
+    while(!(CLKCTRL.MCLKSTATUS & CLKCTRL_OSCHFS_bm));
+
+
+    // System clock stability check by polling the PLL status.
 }
 
 void CFD_Enable(CLKCTRL_CFDSRC_t cfd_source)

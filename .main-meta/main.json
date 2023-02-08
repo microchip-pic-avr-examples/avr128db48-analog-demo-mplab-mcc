@@ -2,29 +2,29 @@
     "metaDataVersion": "1.0.0",
     "category": "com.microchip.ide.project",
     "content": {
-        "metaDataVersion": "1.1.0",
+        "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.avr128db48-analog-demo-mplab-mcc",
-        "version": "2.0.0",
+        "version": "2.0.1",
         "displayName": "Signal Scaling with the OPAMP on the AVR® DB Family of MCUs",
         "projectName": "avr128db48-analog-demo-mplab-mcc",
         "shortDescription": "This example demonstrates using one of the OPAMPs as a Programmable Gain Amplifier (PGA) for the on board ADC",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=5.50.0"
+            "semverRange": ">=6.0.5"
         },
         "compiler": [
             {
                 "name": "XC8",
-                "semverRange": "^2.31.0"
+                "semverRange": "^2.40.0"
             }
         ],
         "dfp": {
             "name": "AVR-Dx_DFP",
-            "semverRange": "^1.1.119"
+            "semverRange": "^2.3.272"
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=5.0.3"
+            "semverRange": ">=5.2.2"
         },
         "device": {
             "metaDataVersion": "1.0.0",
@@ -37,31 +37,11 @@
             }
         },
         "author": "Microchip",
-        "subcategories": [
-          [
-             "Peripherals", "RTC"
-          ],
-          [
-             "Peripherals", "ADC"
-          ],
-          [
-             "Peripherals", "OPAMP"
-          ],
-          [
-             "Peripherals", "CCL"
-          ],
-          [
-             "Peripherals", "USART"
-          ],
-          [
-             "Peripherals", "EVSYS"
-          ]
-        ],
         "peripherals": [
           "RTC", "ADC", "CCL", "EVSYS", "OPAMP", "USART"
         ],
         "keywords": [
-          "12-bit ADC", "ADC", "PGA", "Analog", "OPAMP", "CCL", "RTC", "Sleep", "EVSYS"
+          "PGA", "Analog"
         ],
         "additionalData": {
             "longDescription": {
