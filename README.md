@@ -4,7 +4,7 @@
 
 # Signal Scaling with the OPAMP on the AVR® DB Family of MCUs
 
-This demo application shows how to use one of the Operational Amplifiers (OPAMP) in the AVR® DB family of MCUs to create a Programmable Gain Amplifier for the on-board Analog-to-Digital Converter (ADC). The ADC is triggered automatically by the Real-Time Counter (RTC) via the Event System (EVSYS) to reduce device power consumption.
+This demo application shows how to use one of the Operational Amplifiers (OPAMP) in the AVR® DB family of microcontrollers (MCUs) to create a Programmable Gain Amplifier (PGA) for the on-board Analog-to-Digital Converter (ADC). The ADC is triggered automatically by the Real-Time Counter (RTC) via the Event System (EVSYS) to reduce device power consumption.
 
 ## Related Documentation
 
@@ -37,21 +37,21 @@ This demo application shows how to use one of the Operational Amplifiers (OPAMP)
 
 ## Peripheral Configuration
 
-**UART** - 9600 Baud, 8-bits, No Parity, 1 Stop Bit  
-**ADC** - Single Sample, Triggered on Event (Channel 0), VREF = VDD  
-**RTC** -  1kHz Internal Oscillator   
-**EVSYS** - Channel 0 Event Generator: RTC / 1024  
-**CCL** - Connected to SW0, Run Standby, D-input Flip-Flop Synchronized to 1 kHz internal oscillator, Filter Enabled
+**UART** - 9600 Baud, 8 data bits, no parity, 1 stop bit  
+**ADC** - Single sample, triggered on event (Channel 0), V<sub>REF</sub> = V<sub>DD</sub>  
+**RTC** -  1 kHz internal oscillator   
+**EVSYS** - Channel 0 event generator: RTC/1024  
+**CCL** - Connected to SW0, run standby, D-input flip-flop synchronized to 1 kHz internal oscillator, filter enabled
 
 ## Setting MPLAB Data Visualizer
 
 The first step is to open the MPLAB Data Visualizer tool by pressing the "DV" icon in the toolbar as shown below.
 
-*If this icon is not shown, please install MPLAB Data Visualizer in the Tools &rarr; Plugins window before continuing.*
+*Note: If this icon is not shown, please install MPLAB Data Visualizer in the Tools &rarr; Plugins window before continuing.*
 
 ![Data Visualizer Icon](./images/DVsetup1.PNG)
 
-Then select the COM port associated with the Curiosity Nano  by clicking on COM port entry. Set any settings required in the box below (defaults are OK for this example).
+Then select the COM port associated with the Curiosity Nano  by clicking the COM port entry. Set any settings required in the box below (defaults are OK for this example).
 
 ![Select the COM Port](./images/DVsetup2.PNG)
 
@@ -59,21 +59,21 @@ When the correct COM port has been selected and the Data Visualizer settings are
 
 ![Connect to the device](./images/DVsetup3.PNG)
 
-Once the COM port has been opened, the last step is to set the terminal window to use the COM port as a data source.
+After opening the COM port, the last step is to set the terminal window to use the COM port as a data source.
 
 ![Configure the Terminal](./images/DVsetup4.PNG)
 
 ## Operation
 
-This demo implements an analog signal chain with 1 of the OPAMPs acting as a Programmable Gain Amplifier (PGA) for the ADC. The PGA  can switch gains without using external components due to the internal resistor ladder on the device. There are 8 steps on the ladder plus a unity gain mode for a total of 9 possible gains (1x, 1.07x, 1.14x, 1.33x, 2x, 2.67x, 4x, 8x, 16x) with a single OPAMP.
+This demo implements an analog signal chain with 1 of the OPAMPs acting as a PGA for the ADC. The PGA  can switch gains without using external components due to the internal resistor ladder on the device. There are eight steps on the ladder plus a unity gain mode for a total of nine possible gains (1x, 1.07x, 1.14x, 1.33x, 2x, 2.67x, 4x, 8x, 16x) with a single OPAMP.
 
-The output signal from the OPAMP is measured by the ADC about once per second. The ADC is triggered to start a measurement from a divided down RTC clock signal connected to the Event System. When the measurement is complete, an interrupt is created by the ADC to wake the MCU from Standby Sleep.
+The output signal from the OPAMP is measured by the ADC about once per second. The ADC is triggered to start a measurement from a divided-down RTC clock signal connected to the EVSYS. When the measurement is complete, an interrupt is created by the ADC to wake the MCU from Standby Sleep mode.
 
-LED0 on the Curiosity Nano toggles when the MCU is ready to print a result. The current gain of the OPAMP and the actual measured value are printed to the UART terminal at 9600 baud (see example image below). Once the UART is idle, then the microcontroller enters standby sleep to save power.
+LED0 on the Curiosity Nano toggles when the MCU is ready to print a result. The current gain of the OPAMP and the actual measured value are printed to the UART terminal at 9600 baud (see example image below). Once the UART is idle, then the microcontroller enters Standby Sleep mode to save power.
 
 ![Sample Output](./images/sampleOutput.PNG)
 
-To switch the OPAMP gain configuration, press button SW0 on the Curiosity Nano. The output signal from SW0 is debounced by a CCL. The rising edge interrupt from the CCL's output wakes the microcontroller to switch gains. Then, the MCU wakes up and performs the following operations:
+To switch the OPAMP gain configuration, press button SW0 on the Curiosity Nano. The output signal from SW0 is debounced by the Configurable Custom Logic (CCL). The rising edge interrupt from the CCL's output wakes the microcontroller to perform the following process:
 
 - Stop the RTC
 - Modify the gain (and configuration) of the OPAMP

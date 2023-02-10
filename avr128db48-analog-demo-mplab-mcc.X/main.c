@@ -107,6 +107,12 @@ void enableRTCStandby(void)
      RTC.CTRLA |= RTC_RUNSTDBY_bm | RTC_RTCEN_bm;
 }
 
+void waitForUART(void)
+{
+    while (!UART3_IsTxDone());
+    USART3.STATUS = USART_TXCIF_bm;
+}
+
 int main(void)
 {
     SYSTEM_Initialize();
@@ -164,15 +170,14 @@ int main(void)
             //FIXED VERSION
             printf("Measured: ");
             
-            while (!UART3_IsTxDone());
-            USART3.STATUS = USART_TXCIF_bm;
+            //Wait for the last string to finish, since the next line is very slow
+            waitForUART();
             
             printf("%1.3fV\n\r\n\r", result);
         }
         
         //Wait for UART to finish
-        while (!UART3_IsTxDone());
-        USART3.STATUS = USART_TXCIF_bm;
+        waitForUART();
         
         //If the button was pressed while printing
         if (getGainFlag())
