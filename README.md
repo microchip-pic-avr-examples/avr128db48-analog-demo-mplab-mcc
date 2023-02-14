@@ -51,11 +51,11 @@ The first step is to open the MPLAB Data Visualizer tool by pressing the "DV" ic
 
 ![Data Visualizer Icon](./images/DVsetup1.PNG)
 
-Then select the COM port associated with the Curiosity Nano  by clicking the COM port entry. Set any settings required in the box below (defaults are OK for this example).
+Then select the COM port associated with the Curiosity Nano by clicking the COM port entry. Set any settings required in the box below (defaults are OK for this example).
 
 ![Select the COM Port](./images/DVsetup2.PNG)
 
-When the correct COM port has been selected and the Data Visualizer settings are set, press the play button to open the COM port.
+When the correct COM port has been selected and the Data Visualizer settings are set, press the Play button to open the COM port.
 
 ![Connect to the device](./images/DVsetup3.PNG)
 
@@ -65,7 +65,7 @@ After opening the COM port, the last step is to set the terminal window to use t
 
 ## Operation
 
-This demo implements an analog signal chain with one of the OPAMPs acting as a PGA for the ADC. The PGA  can switch gains without using external components due to the internal resistor ladder on the device. There are eight steps on the ladder plus a unity gain mode for a total of nine possible gains (1x, 1.07x, 1.14x, 1.33x, 2x, 2.67x, 4x, 8x, 16x) with a single OPAMP.
+This demo implements an analog signal chain with one of the OPAMPs acting as a PGA for the ADC. The PGA can switch gains without using external components due to the internal resistor ladder on the device. There are eight steps on the ladder plus a Unity Gain mode for a total of nine possible gains (1x, 1.07x, 1.14x, 1.33x, 2x, 2.67x, 4x, 8x, 16x) with a single OPAMP.
 
 The output signal from the OPAMP is measured by the ADC about once per second. The ADC is triggered to start a measurement from a divided-down RTC clock signal connected to the EVSYS. When the measurement is complete, an interrupt is created by the ADC to wake the MCU from Standby Sleep mode.
 
